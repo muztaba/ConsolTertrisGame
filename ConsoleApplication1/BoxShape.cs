@@ -8,23 +8,28 @@ namespace ConsoleApplication1
 {
     class BoxShape : Shape
     {
-        public override void DrawShape()
+        public BoxShape(int bucketPositionLeft, int bucketPositionTop, int bucketHight, int bucketWidht)
         {
+            
+            /*
+             * Init method initialize the shape array with the object 
+             * in the very beginning of the object creation.
+             */
             Init();
+            /******
+             * Look at from here.
+             * I am trying to init the bucket variable in to the shape class throw the constructor.
+             * Also working in the Move method . 
+             */
 
-            for (int i = 0; i < ShapeArrya.GetLength(0); i++)
-            {
-                for (int j = 0; j < ShapeArrya.GetLength(1); j++)
-                {
-                    Console.Write(ShapeArrya[i, j]);
-                }
-                Console.WriteLine();
-            }
+
         }
 
         private void Init()
         {
-            ShapeArrya = new char[,] { { 'x', 'x'}, { 'x', 'x' } };
+            ShapeArrya = new char[,] { { 'x', 'x' }, { 'x', 'x' } };
+            ShapeArrayRow = ShapeArrya.GetLength(0);
+            ShapeArrayCol = ShapeArrya.GetLength(1);
         }
 
         private void SetBool(bool t)
