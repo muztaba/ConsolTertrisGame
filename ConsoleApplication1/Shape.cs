@@ -17,9 +17,21 @@ namespace ConsoleApplication1
         protected readonly int BucketPositionTop;
         protected readonly int BucketHight;
         protected readonly int BucketWidth;
+
+        protected Shape(int bucketPositionLeft, int bucketPositionTop, int bucketHight, int bucketWidht)
+        {
+            this.BucketPositionLeft = bucketPositionLeft;
+            this.BucketPositionTop = bucketPositionTop;
+            this.BucketHight = bucketHight;
+            this.BucketWidth = bucketWidht;
+        }
+
         public bool MoveLeft(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus)
         {
-
+            /******
+             * Look at from here.
+             * working on the moveing object. Get the idea!!!! 
+             */
             return true;
         }
 
@@ -35,6 +47,11 @@ namespace ConsoleApplication1
         }
 
         public bool Drop(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus)
+        {
+            return true;
+        }
+
+        public bool MoveDown(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus)
         {
             return true;
         }

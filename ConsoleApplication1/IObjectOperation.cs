@@ -14,6 +14,6 @@ namespace ConsoleApplication1
         bool Drop(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus);
 
         void DrawShape(int currentCursorLeft, int currentCursorTop);
-
+        bool MoveDown(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus);
     }
 }

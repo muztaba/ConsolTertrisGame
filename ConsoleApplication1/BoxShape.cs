@@ -8,7 +8,8 @@ namespace ConsoleApplication1
 {
     class BoxShape : Shape
     {
-        public BoxShape(int bucketPositionLeft, int bucketPositionTop, int bucketHight, int bucketWidht)
+        public BoxShape(int bucketPositionLeft, int bucketPositionTop, int bucketHight, int bucketWidht) :
+            base(bucketPositionLeft, bucketPositionTop, bucketHight, bucketWidht)
         {
             
             /*
@@ -16,13 +17,8 @@ namespace ConsoleApplication1
              * in the very beginning of the object creation.
              */
             Init();
-            /******
-             * Look at from here.
-             * I am trying to init the bucket variable in to the shape class throw the constructor.
-             * Also working in the Move method . 
-             */
-
-
+            
+           
         }
 
         private void Init()

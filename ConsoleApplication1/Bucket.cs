@@ -12,6 +12,7 @@ namespace ConsoleApplication1
         private bool[,] bucketStatus;
         private int currentCursorLeft, currentCursorTop;
         private Random random;
+        private IObjectOperation obj;
 //        private bool GameOver;
         public Bucket()
         {
@@ -30,9 +31,9 @@ namespace ConsoleApplication1
             while (true)
             {
                 InitCursorPosObject();
-                IObjectOperation obj = ChoseRandomObject();
+                obj = ChoseRandomObject();
                 if (obj == null) continue;
-                if (!InitialyPlaceObject(obj)) break;
+                if (!InitialyPlaceObject()) break;
                 KeyDetection();
             }
         }
@@ -52,7 +53,7 @@ namespace ConsoleApplication1
          * boolean value. If the method return 'False' then there is no way to place new object.
          * That time the game is over. Otherwise when it is true then the game will continue.
          */
-        private bool InitialyPlaceObject(IObjectOperation obj)
+        private bool InitialyPlaceObject()
         {
             //            if (!BucketStatus[CurrentCursorLeft, CurrentCursorTop]) return false;
             Console.SetCursorPosition(currentCursorLeft, currentCursorTop);
@@ -93,7 +94,7 @@ namespace ConsoleApplication1
             switch (rand)
             {
                 case 1:
-                    return new BoxShape();
+                    return new BoxShape(BucketPositionLeft, BucketPositionTop, BucketHight, BucketWidth);
 
             }
             return null;
