@@ -63,8 +63,8 @@ namespace ConsoleApplication1
         {
             for (int i = 0; i < ShapeArrayRow; i++)
             {
-                Console.SetCursorPosition(i + BucketPositionLeft, BucketPositionTop);
-                Console.Write(new string(' ', ShapeArrayCol - 1));
+                Console.SetCursorPosition(BucketPositionLeft, BucketPositionTop + i);
+                Console.Write(new string(' ', ShapeArrayCol));
             }
         }
 
@@ -76,11 +76,11 @@ namespace ConsoleApplication1
             this.BucketPositionTop = currentCursorTop;
 
             // Iterate over the object array to draw the object.
-            for (int i = 0; i < ShapeArrya.GetLength(0); i++)
+            for (int i = 0; i <ShapeArrayRow; i++)
             {
                 Console.SetCursorPosition(currentCursorLeft, currentCursorTop + i);
                 Console.ForegroundColor = ConsoleColor.White;
-                for (int j = 0; j < ShapeArrya.GetLength(1); j++)
+                for (int j = 0; j < ShapeArrayCol; j++)
                 {
                     Console.Write(ShapeArrya[i, j]);
                 }

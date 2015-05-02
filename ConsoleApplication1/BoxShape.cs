@@ -25,7 +25,7 @@ namespace ConsoleApplication1
         {
             ShapeArrya = new char[,] { { 'x', 'x' }, { 'x', 'x' } };
             ShapeArrayRow = ShapeArrya.GetLength(0);
-            ShapeArrayCol = ShapeArrya.GetLength(1);
+            ShapeArrayCol = ShapeArrya.GetLength(1); 
         }
 
         private void SetBool(bool t)
