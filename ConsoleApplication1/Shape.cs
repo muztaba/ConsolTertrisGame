@@ -27,18 +27,16 @@ namespace ConsoleApplication1
             this.BucketWidth = bucketWidht;
         }
 
-        public bool MoveLeft(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus)
+        // Return the ShapeArray's column size.
+        public int GetColumnSize()
         {
-            /******
-             * Look at from here.
-             * working on the moveing object. Get the idea!!!! 
-             */
-            return true;
+            return ShapeArrayCol;
         }
 
-        public bool MoveRight(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus)
+        // Return the ShapeArray's row size
+        public int GetRowSize()
         {
-            return true;
+            return ShapeArrayRow;
         }
 
         public bool Rotate(bool[,] bucketStatus)

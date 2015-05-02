@@ -8,14 +8,13 @@ namespace ConsoleApplication1
 {
     interface IObjectOperation
     {
-        bool MoveLeft(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus);
-        bool MoveRight(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus);
-        bool Rotate(bool[,] bucketStatus);
+       bool Rotate(bool[,] bucketStatus);
         bool Drop(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus);
-
-        void DrawShape(int currentCursorLeft, int currentCursorTop);
         bool MoveDown(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus);
-
+        void DrawShape(int currentCursorLeft, int currentCursorTop);
         void Erase();
+
+        int GetColumnSize();
+        int GetRowSize();
     }
 }

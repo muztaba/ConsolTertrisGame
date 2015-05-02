@@ -115,8 +115,8 @@ namespace ConsoleApplication1
                 switch (key)
                 {
                     case ConsoleKey.DownArrow:
-                        if (IsValidKey(bucketPosLeft, bucketPosTop + 1))
-                            KeyPressed(ref bucketPosLeft, ref bucketPosTop, 1);
+                        if (IsValidKey(bucketPosLeft, bucketPosTop + obj.GetRowSize() + 2))
+                            Drop(ref bucketPosLeft, ref bucketPosTop);
                         break;
 
                     case ConsoleKey.UpArrow:
@@ -125,8 +125,10 @@ namespace ConsoleApplication1
                         break;
 
                     case ConsoleKey.RightArrow:
-                        if (IsValidKey(bucketPosLeft + 1, bucketPosTop))
-                            KeyPressed(ref bucketPosLeft, ref bucketPosTop, 3);
+                        // To check the validity of the right move need to pass the column
+                        // value of the object + the current position of the cursor to IsValidKey method.
+                        if (IsValidKey(bucketPosLeft + obj.GetColumnSize(), bucketPosTop))
+                            MoveRight(ref bucketPosLeft, ref bucketPosTop);
                         break;
 
                     case ConsoleKey.LeftArrow:
@@ -142,12 +144,11 @@ namespace ConsoleApplication1
 
             } while (!Console.KeyAvailable);
         }
-
+        
         /**
          * MoveLeft method move the object one column left. This will check the validity of the 
          * move using the IsValidKey method.
          */
-
         private void MoveLeft(ref int x, ref int y)
         {
             // Erase the object in the current position to draw for the next position.
@@ -156,10 +157,29 @@ namespace ConsoleApplication1
             obj.DrawShape(x, y);
         }
 
+        /**
+         * MoveRight method move the obejct one column right.
+         */
+        private void MoveRight(ref int x, ref int y)
+        {
+            // Erase the object in the current position to draw for the next position.
+            obj.Erase();
+            x++;
+            obj.DrawShape(x, y);     
+        }
+
+        private void Drop(ref int x, ref int y)
+        {
+            obj.Erase();
+            y += 3;
+            obj.DrawShape(x, y);
+        }
+
         private bool IsValidKey(int x, int y)
         {
             return BucketPositionLeft <= x && x <= (BucketPositionLeft + BucketWidth) - 1 &&
                    BucketPositionTop <= y && y <= (BucketPositionTop + BucketHight) - 1;
+
         }
 
         private void KeyPressed(ref int x, ref int y, int select)
