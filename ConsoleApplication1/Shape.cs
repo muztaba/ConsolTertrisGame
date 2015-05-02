@@ -18,7 +18,7 @@ namespace ConsoleApplication1
         protected  int BucketPositionTop;
         protected readonly int BucketHight;
         protected readonly int BucketWidth;
-
+        /*
         protected Shape(int bucketPositionLeft, int bucketPositionTop, int bucketHight, int bucketWidht)
         {
             this.BucketPositionLeft = bucketPositionLeft;
@@ -26,7 +26,7 @@ namespace ConsoleApplication1
             this.BucketHight = bucketHight;
             this.BucketWidth = bucketWidht;
         }
-
+        */
         // Return the ShapeArray's column size.
         public int GetColumnSize()
         {
@@ -85,6 +85,8 @@ namespace ConsoleApplication1
                 Console.WriteLine();
             }
         }
+
+        protected abstract void Init();
 
     }
 }

@@ -93,8 +93,10 @@ namespace ConsoleApplication1
 
             switch (rand)
             {
-                case 1:
-                    return new BoxShape(BucketPositionLeft, BucketPositionTop, BucketHight, BucketWidth);
+                //case 1:
+                  //  return new BoxShape(BucketPositionLeft, BucketPositionTop, BucketHight, BucketWidth);
+                case 2:
+                    return new ZShape();
 
             }
             return null;
@@ -168,6 +170,9 @@ namespace ConsoleApplication1
             obj.DrawShape(x, y);     
         }
 
+        /**
+         * Drop the object with the three column.
+         */
         private void Drop(ref int x, ref int y)
         {
             obj.Erase();

@@ -8,8 +8,7 @@ namespace ConsoleApplication1
 {
     class BoxShape : Shape
     {
-        public BoxShape(int bucketPositionLeft, int bucketPositionTop, int bucketHight, int bucketWidht) :
-            base(bucketPositionLeft, bucketPositionTop, bucketHight, bucketWidht)
+        public BoxShape(int bucketPositionLeft, int bucketPositionTop, int bucketHight, int bucketWidht)
         {
             
             /*
@@ -21,7 +20,7 @@ namespace ConsoleApplication1
            
         }
 
-        private void Init()
+        protected override void Init()
         {
             ShapeArrya = new char[,] { { 'x', 'x' }, { 'x', 'x' } };
             ShapeArrayRow = ShapeArrya.GetLength(0);
