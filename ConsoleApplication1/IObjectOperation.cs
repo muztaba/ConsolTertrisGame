@@ -15,5 +15,7 @@ namespace ConsoleApplication1
 
         void DrawShape(int currentCursorLeft, int currentCursorTop);
         bool MoveDown(int currentCursorLeft, int currentCursorTop, bool[,] bucketStatus);
+
+        void Erase();
     }
 }

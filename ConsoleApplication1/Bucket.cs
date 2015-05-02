@@ -131,7 +131,7 @@ namespace ConsoleApplication1
 
                     case ConsoleKey.LeftArrow:
                         if (IsValidKey(bucketPosLeft - 1, bucketPosTop))
-                            KeyPressed(ref bucketPosLeft, ref bucketPosTop, 4);
+                            MoveLeft(ref bucketPosLeft, ref bucketPosTop);
                         break;
 
                     case ConsoleKey.Escape:
@@ -141,6 +141,19 @@ namespace ConsoleApplication1
 
 
             } while (!Console.KeyAvailable);
+        }
+
+        /**
+         * MoveLeft method move the object one column left. This will check the validity of the 
+         * move using the IsValidKey method.
+         */
+
+        private void MoveLeft(ref int x, ref int y)
+        {
+            // Erase the object in the current position to draw for the next position.
+            obj.Erase();
+            x--;
+            obj.DrawShape(x, y);
         }
 
         private bool IsValidKey(int x, int y)
