@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Timers;
 
 namespace ConsoleApplication1
 {
@@ -13,6 +13,9 @@ namespace ConsoleApplication1
         private int currentCursorLeft, currentCursorTop;
         private Random random;
         private IObjectOperation obj;
+        private Timer timer;
+        private int delay = 500;
+        private int bucketPosLeft, bucketPosTop; 
 //        private bool GameOver;
         public Bucket()
         {
@@ -104,12 +107,17 @@ namespace ConsoleApplication1
 
         private void KeyDetection()
         {
-            int bucketPosLeft = currentCursorLeft,
-                bucketPosTop = currentCursorTop;
+            bucketPosLeft = currentCursorLeft;
+            bucketPosTop = currentCursorTop;
 
             Console.SetCursorPosition(bucketPosLeft, bucketPosTop);
             Console.ForegroundColor = ConsoleColor.Red;
 //            Console.Write("A");
+
+            timer = new Timer(delay);
+            timer.Elapsed += MoveDown;
+            timer.Enabled = true;
+
             do
             {
                 var key = Console.ReadKey(true).Key;
@@ -146,7 +154,19 @@ namespace ConsoleApplication1
 
             } while (!Console.KeyAvailable);
         }
-        
+
+        private void MoveDown(Object source, ElapsedEventArgs e)
+        {
+            if (IsValidKey(bucketPosLeft, bucketPosTop + 1))
+            {
+                obj.Erase();
+                bucketPosTop++;
+                obj.DrawShape(bucketPosLeft, bucketPosTop);
+            }
+                
+        }
+
+
         /**
          * MoveLeft method move the object one column left. This will check the validity of the 
          * move using the IsValidKey method.
@@ -183,7 +203,7 @@ namespace ConsoleApplication1
         private bool IsValidKey(int x, int y)
         {
             return BucketPositionLeft <= x && x <= (BucketPositionLeft + BucketWidth) - 1 &&
-                   BucketPositionTop <= y && y <= (BucketPositionTop + BucketHight) - 1;
+                   BucketPositionTop <= y && y < (BucketPositionTop + BucketHight) - 1;
 
         }
 

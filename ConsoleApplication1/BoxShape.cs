@@ -16,8 +16,6 @@ namespace ConsoleApplication1
              * in the very beginning of the object creation.
              */
             Init();
-            
-           
         }
 
         protected override void Init()
