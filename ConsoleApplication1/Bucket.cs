@@ -15,7 +15,8 @@ namespace ConsoleApplication1
         private IObjectOperation obj;
         private Timer timer;
         private int delay = 500;
-        private int bucketPosLeft, bucketPosTop; 
+        private int bucketPosLeft, bucketPosTop;
+        private bool next = true;
 //        private bool GameOver;
         public Bucket()
         {
@@ -96,8 +97,8 @@ namespace ConsoleApplication1
 
             switch (rand)
             {
-                //case 1:
-                  //  return new BoxShape(BucketPositionLeft, BucketPositionTop, BucketHight, BucketWidth);
+                case 1:
+                    return new BoxShape(BucketPositionLeft, BucketPositionTop, BucketHight, BucketWidth);
                 case 2:
                     return new ZShape();
 
@@ -107,21 +108,24 @@ namespace ConsoleApplication1
 
         private void KeyDetection()
         {
+            // 'next' boolean variable use for the 
+            next = true;
             bucketPosLeft = currentCursorLeft;
             bucketPosTop = currentCursorTop;
 
             Console.SetCursorPosition(bucketPosLeft, bucketPosTop);
             Console.ForegroundColor = ConsoleColor.Red;
-//            Console.Write("A");
 
+            // timer object use to move down object one row 
+            // with a interval.
             timer = new Timer(delay);
             timer.Elapsed += MoveDown;
-            timer.Enabled = true;
+            timer.Start();
 
             do
             {
                 var key = Console.ReadKey(true).Key;
-
+                if (!next) break;
                 switch (key)
                 {
                     case ConsoleKey.DownArrow:
@@ -150,9 +154,11 @@ namespace ConsoleApplication1
                         return;
 
                 }
-
+                
 
             } while (!Console.KeyAvailable);
+
+            showRowCol(bucketPosLeft, bucketPosTop);
         }
 
         private void MoveDown(Object source, ElapsedEventArgs e)
@@ -162,10 +168,42 @@ namespace ConsoleApplication1
                 obj.Erase();
                 bucketPosTop++;
                 obj.DrawShape(bucketPosLeft, bucketPosTop);
+                showRowCol(bucketPosLeft, bucketPosTop);
+            }
+            else
+            {
+                timer.Stop();
+                next = false;
+                BucketStatusUpdate();
             }
                 
         }
 
+        private void BucketStatusUpdate()
+        {
+            int row = bucketPosTop - BucketPositionTop;
+            int col = bucketPosLeft - BucketPositionLeft;
+
+            for (; row < row + obj.GetRowSize(); row++)
+            {
+                for (; col < col + obj.GetColumnSize(); col++)
+                {
+                    bucketStatus[row, col] = true;
+                }
+            }
+            
+            for (int k = 0; k < bucketStatus.GetLength(0); k++)
+            {
+
+//                Console.SetCursorPosition(55, 60 + k);
+                for (int l = 0; l < bucketStatus.GetLength(1); l++)
+                {
+                    if (bucketStatus[k, l]) Console.WriteLine("there it is ");
+                }
+
+            }
+            
+        }
 
         /**
          * MoveLeft method move the object one column left. This will check the validity of the 
@@ -203,7 +241,8 @@ namespace ConsoleApplication1
         private bool IsValidKey(int x, int y)
         {
             return BucketPositionLeft <= x && x <= (BucketPositionLeft + BucketWidth) - 1 &&
-                   BucketPositionTop <= y && y < (BucketPositionTop + BucketHight) - 1;
+                   BucketPositionTop <= y && y < (BucketPositionTop + BucketHight) - 1
+                   && !bucketStatus[y - BucketPositionTop, x - BucketPositionLeft];
 
         }
 

@@ -81,6 +81,7 @@ namespace ConsoleApplication1
                 for (int j = 0; j < ShapeArrayCol; j++)
                 {
                     Console.Write(ShapeArrya[i, j]);
+                        
                 }
                 Console.WriteLine();
             }
